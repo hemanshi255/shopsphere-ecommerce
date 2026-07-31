@@ -1,0 +1,218 @@
+.home-page {
+  min-height: 100vh;
+}
+
+
+/* Hero */
+
+.hero-section {
+  height: 90vh;
+  background-image: url("../../public/img/shopsphere-bg.webp");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.69);
+}
+
+
+.hero-content {
+  position: relative;
+  color: white;
+  max-width: 700px;
+}
+
+
+.hero-content h1 {
+  font-size: 55px;
+  font-weight: 700;
+}
+
+
+.hero-content h1 span {
+  color: #fff;
+}
+
+
+.hero-content p {
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+
+.explore-btn {
+
+  background: #0D5C63 !important;
+  color:white !important;
+  padding:12px 30px !important;
+  border-radius:30px;
+  margin-top:20px;
+  font-size:18px;
+
+}
+
+
+.explore-btn:hover {
+
+  background:#094349;
+  color:white;
+
+}
+
+
+/* Feature Cards */
+
+.feature-card {
+
+  padding:30px;
+  border-radius:15px;
+  background:white;
+  height:100%;
+
+}
+
+
+.feature-card svg {
+
+  color:#0D5C63;
+
+}
+
+
+.feature-card h4 {
+
+  font-weight:700;
+
+}
+
+/* Responsive Design */
+
+@media (max-width: 992px) {
+
+  .hero-section {
+    height: 70vh;
+  }
+
+
+  .hero-content h1 {
+    font-size: 45px;
+  }
+
+
+  .hero-content p {
+    font-size: 18px;
+  }
+
+}
+
+
+/* Tablet */
+
+@media (max-width: 768px) {
+
+  .hero-section {
+    height: 75vh;
+  }
+
+
+  .hero-content {
+    padding: 0 25px;
+  }
+
+
+  .hero-content h1 {
+    font-size: 36px;
+  }
+
+
+  .hero-content p {
+    font-size: 16px;
+  }
+
+
+  .explore-btn {
+
+    padding: 10px 25px;
+    font-size: 16px;
+
+  }
+
+
+  .feature-card {
+
+    margin-bottom: 20px;
+
+  }
+
+}
+
+
+/* Mobile */
+
+@media (max-width: 576px) {
+
+
+  .hero-section {
+
+    height: 80vh;
+
+    background-position: center;
+
+  }
+
+
+  .hero-overlay {
+
+    background: rgba(0,0,0,0.70);
+
+  }
+
+
+  .hero-content h1 {
+
+    font-size: 30px;
+
+  }
+
+
+  .hero-content p {
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+  }
+
+
+  .explore-btn {
+
+    width: 100%;
+
+    padding: 12px;
+
+  }
+
+
+  .feature-card {
+
+    padding: 20px;
+
+  }
+
+
+  .feature-card h4 {
+
+    font-size: 20px;
+
+  }
+
+}

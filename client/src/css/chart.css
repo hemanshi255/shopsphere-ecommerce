@@ -1,0 +1,67 @@
+.chart-scroll {
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 10px; 
+}
+
+
+.chart-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+
+.chart-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+
+.chart-scroll::-webkit-scrollbar-thumb {
+  background: #0D5C63;
+  border-radius: 10px;
+}
+
+
+.chart-scroll::-webkit-scrollbar-thumb:hover {
+  background: #09464b;
+}
+
+
+.chart-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #0D5C63 #f1f1f1;
+}
+
+.chart-empty{
+    height:320px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:#6c757d;
+}
+
+.chart-empty-icon{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    background:#f1f3f5;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:32px;
+    margin-bottom:15px;
+}
+
+.chart-empty h6{
+    font-weight:600;
+    color:#212529;
+    margin-bottom:8px;
+}
+
+.chart-empty p{
+    max-width:250px;
+    font-size:14px;
+    margin:0;
+}
