@@ -38,10 +38,10 @@ function EditProduct() {
 
         if (product.images && product.images.length > 0) {
           setPreviews(
-            product.images.map((img) => `http://localhost:5000/uploads/${img}`),
+            product.images.map((img) => `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${img}`),
           );
         } else if (product.image) {
-          setPreviews([`http://localhost:5000/uploads/${product.image}`]);
+          setPreviews([`https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${product.image}`]);
         }
       } catch (error) {
         console.log(error);

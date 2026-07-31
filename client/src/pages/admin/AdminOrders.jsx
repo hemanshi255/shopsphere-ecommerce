@@ -313,7 +313,7 @@ function AdminOrders() {
                         <td>
                           <div className="d-flex align-items-center">
                             <img
-                              src={`http://localhost:5000/uploads/${item.product.image}`}
+                              src={`https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${item.product.image}`}
                               width="60"
                               height="60"
                               className="rounded me-3"

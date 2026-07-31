@@ -237,7 +237,7 @@ function AdminLayout() {
                 <img
                   src={
                     user?.profileImage
-                      ? `http://localhost:5000/uploads/${user.profileImage}`
+                      ? `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${user.profileImage}`
                       : "/default-profile.png"
                   }
                   alt="Profile"
@@ -389,7 +389,7 @@ function AdminLayout() {
                 <img
                   src={
                     user?.profileImage
-                      ? `http://localhost:5000/uploads/${user.profileImage}`
+                      ? `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${user.profileImage}`
                       : "/default-profile.png"
                   }
                   alt="Profile"

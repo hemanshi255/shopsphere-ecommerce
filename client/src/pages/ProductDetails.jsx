@@ -114,7 +114,7 @@ function ProductDetails() {
 
     name: product.name,
 
-    image: imageList.map((img) => `http://localhost:5000/uploads/${img}`),
+    image: imageList.map((img) => `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${img}`),
 
     description: product.description,
 
@@ -212,7 +212,7 @@ function ProductDetails() {
                   </button>
 
                   <img
-                    src={`http://localhost:5000/uploads/${selectedImage}`}
+                    src={`https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${selectedImage}`}
                     alt={product.name}
                     className="img-fluid product-main-image"
                     onMouseMove={handleMouseMove}
@@ -243,7 +243,7 @@ function ProductDetails() {
                   ).map((img, index) => (
                     <img
                       key={index}
-                      src={`http://localhost:5000/uploads/${img}`}
+                      src={`https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${img}`}
                       alt={`Thumbnail ${index + 1}`}
                       onClick={() => setSelectedImage(img)}
                       style={{
@@ -347,7 +347,7 @@ function ProductDetails() {
             </button>
 
             <img
-              src={`http://localhost:5000/uploads/${selectedImage}`}
+              src={`https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${selectedImage}`}
               alt={product.name}
               style={{
                 maxWidth: "90%",

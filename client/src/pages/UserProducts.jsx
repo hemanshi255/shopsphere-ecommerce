@@ -218,7 +218,7 @@ function UserProducts() {
               <div className="up-card" key={product._id}>
                 <div className="up-card-image-wrap">
                   <img
-                    src={`http://localhost:5000/uploads/${product.image}`}
+                    src={`https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${product.image}`}
                     className="up-card-image"
                     alt={product.name}
                   />

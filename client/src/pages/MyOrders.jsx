@@ -108,7 +108,7 @@ function MyOrders() {
               {order.products.map((item) => (
                 <div className="d-flex align-items-center mb-3" key={item._id}>
                   <img
-                    src={`http://localhost:5000/uploads/${item.product.image}`}
+                    src={`https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${item.product.image}`}
                     alt={item.product.name}
                     width="70"
                     height="70"

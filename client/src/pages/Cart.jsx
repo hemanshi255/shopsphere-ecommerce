@@ -188,7 +188,7 @@ function Cart() {
                 <div className="col-md-4" key={item.product._id}>
                   <div className="card h-100 shadow-sm">
                     <img
-                      src={`http://localhost:5000/uploads/${item.product.image}`}
+                      src={`https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${item.product.image}`}
                       className="card-img-top"
                       alt={item.product.name}
                       style={{
