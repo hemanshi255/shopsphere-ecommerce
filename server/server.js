@@ -23,9 +23,6 @@ const paymentRoutes = require("./routes/paymentRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const couponRoutes = require("./routes/couponRoutes");
 
-const result = dotenv.config({
-  path: path.join(__dirname, ".env"),
-});
 
 
 connectDB();
