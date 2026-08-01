@@ -6,17 +6,17 @@ const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 587,
   secure: false,
+  family: 4,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
 });
-
 const sendWelcomeEmail = async (email, name) => {
 
   try {
 
-    await transporter.sendMail({
+    transporter.sendMail({
 
       from: process.env.EMAIL_USER,
 
@@ -38,9 +38,13 @@ const sendWelcomeEmail = async (email, name) => {
         <p><strong>Product Management Team</strong></p>
       `,
 
+    })
+    .then(() => {
+        console.log("Welcome email sent successfully");
+    })
+    .catch((error)=>{
+        console.log("Email Error:", error.message);
     });
-
-    console.log("Welcome email sent successfully");
 
   } catch (error) {
 
