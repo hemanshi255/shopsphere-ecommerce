@@ -176,9 +176,9 @@ function OrderDetails() {
                   <div className="col-12 col-md-3 text-center mb-3 mb-md-0">
                     <img
                       src={
-                        product.image?.startsWith("http")
-                          ? product.image
-                          : `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${product.image}`
+                        item.product.image?.startsWith("http")
+                          ? item.product.image
+                          : `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${item.product.image}`
                       }
                       alt={item.product.name}
                       className="img-fluid rounded"

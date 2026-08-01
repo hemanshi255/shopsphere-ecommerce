@@ -108,9 +108,9 @@ function MyOrders() {
                   >
                     <img
                       src={
-                        product.image?.startsWith("http")
-                          ? product.image
-                          : `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${product.image}`
+                        item.product.image?.startsWith("http")
+                          ? item.product.image
+                          : `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${item.product.image}`
                       }
                       alt={item.product.name}
                       width="70"
