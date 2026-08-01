@@ -153,7 +153,7 @@ function AdminOrders() {
 
         <meta name="author" content="ShopSphere" />
       </Helmet>
-      
+
       <div className="container mt-4">
         <h2 className="fw-bold mb-4">Manage Orders</h2>
 
@@ -313,7 +313,11 @@ function AdminOrders() {
                         <td>
                           <div className="d-flex align-items-center">
                             <img
-                              src={`https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${item.product.image}`}
+                              src={
+                                item.product.image?.startsWith("http")
+                                  ? item.product.image
+                                  : `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${item.product.image}`
+                              }
                               width="60"
                               height="60"
                               className="rounded me-3"
