@@ -79,7 +79,11 @@ function Wishlist() {
               <div className="col-md-4" key={product._id}>
                 <div className="card h-100 shadow-sm">
                   <img
-                    src={`https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${product.image}`}
+                    src={
+                      product.image?.startsWith("http")
+                        ? product.image
+                        : `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${product.image}`
+                    }
                     className="card-img-top"
                     alt={product.name}
                     style={{

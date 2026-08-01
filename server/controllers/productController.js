@@ -1,6 +1,7 @@
 const Product = require("../models/product");
-const fs = require("fs");
-const path = require("path");
+// const fs = require("fs");
+// const path = require("path");
+const cloudinary = require("../config/cloudinary");
 
 const createProduct = async (req, res) => {
   try {
@@ -15,7 +16,8 @@ const createProduct = async (req, res) => {
 
     const imageFiles = req.files || [];
 
-    const imageNames = imageFiles.map((file) => file.filename);
+    const imageUrls = imageFiles.map((file) => file.path);
+    const imagePublicIds = imageFiles.map((file) => file.filename);
 
     const product = await Product.create({
       name,
@@ -23,8 +25,10 @@ const createProduct = async (req, res) => {
       price,
       category,
       stock,
-      image: imageNames.length > 0 ? imageNames[0] : "",
-      images: imageNames,
+      image: imageUrls.length > 0 ? imageUrls[0] : "",
+      imagePublicId: imagePublicIds.length > 0 ? imagePublicIds[0] : "",
+      images: imageUrls,
+      imagePublicIds,
       createdBy: req.user.id,
     });
 
@@ -156,30 +160,24 @@ const updateProduct = async (req, res) => {
 
     // Image update will be added next
 
-   if (req.files && req.files.length > 0) {
-  // Delete old images
-  if (product.images && product.images.length > 0) {
-    product.images.forEach((img) => {
-      const imagePath = path.join(__dirname, "../uploads", img);
-
-      if (fs.existsSync(imagePath)) {
-        fs.unlinkSync(imagePath);
+    if (req.files && req.files.length > 0) {
+      // Delete old Cloudinary images
+      if (product.imagePublicIds && product.imagePublicIds.length > 0) {
+        for (const publicId of product.imagePublicIds) {
+          await cloudinary.uploader.destroy(publicId);
+        }
+      } else if (product.imagePublicId) {
+        await cloudinary.uploader.destroy(product.imagePublicId);
       }
-    });
-  } else if (product.image) {
-    // Support old products with only one image
-    const imagePath = path.join(__dirname, "../uploads", product.image);
 
-    if (fs.existsSync(imagePath)) {
-      fs.unlinkSync(imagePath);
+      const imageUrls = req.files.map((file) => file.path);
+      const imagePublicIds = req.files.map((file) => file.filename);
+
+      product.image = imageUrls[0];
+      product.imagePublicId = imagePublicIds[0];
+      product.images = imageUrls;
+      product.imagePublicIds = imagePublicIds;
     }
-  }
-
-  const imageNames = req.files.map((file) => file.filename);
-
-  product.image = imageNames[0];
-  product.images = imageNames;
-}
 
     await product.save();
 
@@ -210,14 +208,13 @@ const deleteProduct = async (req, res) => {
     }
 
     // Delete image if it exists
-    if (product.image) {
-      const imagePath = path.join(__dirname, "../uploads", product.image);
-
-      if (fs.existsSync(imagePath)) {
-        fs.unlinkSync(imagePath);
+    if (product.imagePublicIds && product.imagePublicIds.length > 0) {
+      for (const publicId of product.imagePublicIds) {
+        await cloudinary.uploader.destroy(publicId);
       }
+    } else if (product.imagePublicId) {
+      await cloudinary.uploader.destroy(product.imagePublicId);
     }
-
     // Delete product from database
     await Product.findByIdAndDelete(req.params.id);
 

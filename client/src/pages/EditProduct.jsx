@@ -38,10 +38,18 @@ function EditProduct() {
 
         if (product.images && product.images.length > 0) {
           setPreviews(
-            product.images.map((img) => `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${img}`),
+            product.images.map((img) =>
+              img?.startsWith("http")
+                ? img
+                : `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${img}`,
+            ),
           );
         } else if (product.image) {
-          setPreviews([`https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${product.image}`]);
+          setPreviews([
+            product.image?.startsWith("http")
+              ? product.image
+              : `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${product.image}`,
+          ]);
         }
       } catch (error) {
         console.log(error);

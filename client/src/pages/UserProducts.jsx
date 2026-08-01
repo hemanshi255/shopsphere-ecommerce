@@ -12,7 +12,6 @@ import StarRating from "../components/StarRating";
 import "../css/userproduct.css";
 import { Helmet } from "react-helmet-async";
 
-
 function UserProducts() {
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("newest");
@@ -131,10 +130,7 @@ function UserProducts() {
           content="all products, online shopping, ShopSphere products, electronics, fashion, home essentials, accessories, best deals, ecommerce"
         />
 
-        <meta
-          property="og:title"
-          content="All Products | ShopSphere"
-        />
+        <meta property="og:title" content="All Products | ShopSphere" />
 
         <meta
           property="og:description"
@@ -218,7 +214,11 @@ function UserProducts() {
               <div className="up-card" key={product._id}>
                 <div className="up-card-image-wrap">
                   <img
-                    src={`https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${product.image}`}
+                    src={
+                      product.image?.startsWith("http")
+                        ? product.image
+                        : `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${product.image}`
+                    }
                     className="up-card-image"
                     alt={product.name}
                   />

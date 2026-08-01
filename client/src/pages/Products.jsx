@@ -195,7 +195,11 @@ function Products() {
                   {/* Product Image */}
                   <div className="product-image-wrapper">
                     <img
-                      src={`https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${product.image}`}
+                      src={
+                        product.image?.startsWith("http")
+                          ? product.image
+                          : `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${product.image}`
+                      }
                       alt={product.name}
                       className="product-image"
                     />

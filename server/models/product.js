@@ -33,7 +33,19 @@ const productSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+
+    imagePublicId: {
+      type: String,
+      default: "",
+    },
+
     images: [
+      {
+        type: String,
+      },
+    ],
+
+    imagePublicIds: [
       {
         type: String,
       },

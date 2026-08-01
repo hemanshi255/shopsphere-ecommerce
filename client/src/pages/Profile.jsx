@@ -106,13 +106,13 @@ function Profile() {
                         <img
                           src={
                             user?.profileImage
-                              ? `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${user.profileImage}`
+                              ? user.profileImage.startsWith("http")
+                                ? user.profileImage
+                                : `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${user.profileImage}`
                               : defaultProfile
                           }
                           alt="Profile"
-                          className="rounded-circle me-2"
-                          width="40"
-                          height="40"
+                          className="rounded-circle me-2 profile-image"
                           onError={(e) => {
                             e.target.src = defaultProfile;
                           }}

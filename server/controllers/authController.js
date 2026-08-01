@@ -5,7 +5,6 @@ const { sendWelcomeEmail, sendResetPasswordEmail } = require("../utils/email");
 const crypto = require("crypto");
 const createNotification = require("../utils/createNotification");
 
-
 const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -39,11 +38,11 @@ const registerUser = async (req, res) => {
     });
     await sendWelcomeEmail(user.email, user.name);
     await createNotification(
-  "New User Registered",
-  `${user.name} has created a new account.`,
-  "user",
-  "/admin/users"
-);
+      "New User Registered",
+      `${user.name} has created a new account.`,
+      "user",
+      "/admin/users",
+    );
     res.status(201).json({
       success: true,
       message: "User registered successfully",
@@ -201,29 +200,24 @@ const resetPassword = async (req, res) => {
 
 const getProfile = async (req, res) => {
   try {
-
     const user = await User.findById(req.user.id).select("-password");
 
     res.status(200).json({
       success: true,
       user,
     });
-
   } catch (error) {
-
     console.log(error);
 
     res.status(500).json({
       success: false,
       message: "Server Error",
     });
-
   }
 };
 
 const updateProfile = async (req, res) => {
   try {
-
     const { name } = req.body;
 
     const user = await User.findById(req.user.id);
@@ -238,8 +232,17 @@ const updateProfile = async (req, res) => {
     user.name = name || user.name;
 
     if (req.file) {
-  user.profileImage = req.file.filename;
-}
+      // Delete old Cloudinary profile image
+      if (user.profileImagePublicId) {
+        const cloudinary = require("../config/cloudinary");
+
+        await cloudinary.uploader.destroy(user.profileImagePublicId);
+      }
+
+      // Save new Cloudinary image
+      user.profileImage = req.file.path;
+      user.profileImagePublicId = req.file.filename;
+    }
 
     await user.save();
 
@@ -248,16 +251,13 @@ const updateProfile = async (req, res) => {
       message: "Profile updated successfully",
       user,
     });
-
   } catch (error) {
-
     console.log(error);
 
     res.status(500).json({
       success: false,
       message: "Server Error",
     });
-
   }
 };
 
@@ -267,5 +267,5 @@ module.exports = {
   forgotPassword,
   resetPassword,
   getProfile,
-  updateProfile
+  updateProfile,
 };

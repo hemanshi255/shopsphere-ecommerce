@@ -114,7 +114,11 @@ function ProductDetails() {
 
     name: product.name,
 
-    image: imageList.map((img) => `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${img}`),
+    image: imageList.map((img) =>
+      img?.startsWith("http")
+        ? img
+        : `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${img}`,
+    ),
 
     description: product.description,
 
@@ -212,7 +216,11 @@ function ProductDetails() {
                   </button>
 
                   <img
-                    src={`https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${selectedImage}`}
+                    src={
+                      selectedImage?.startsWith("http")
+                        ? selectedImage
+                        : `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${selectedImage}`
+                    }
                     alt={product.name}
                     className="img-fluid product-main-image"
                     onMouseMove={handleMouseMove}
@@ -243,7 +251,11 @@ function ProductDetails() {
                   ).map((img, index) => (
                     <img
                       key={index}
-                      src={`https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${img}`}
+                      src={
+                        img?.startsWith("http")
+                          ? img
+                          : `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${img}`
+                      }
                       alt={`Thumbnail ${index + 1}`}
                       onClick={() => setSelectedImage(img)}
                       style={{
@@ -347,7 +359,11 @@ function ProductDetails() {
             </button>
 
             <img
-              src={`https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${selectedImage}`}
+              src={
+                product.image?.startsWith("http")
+                  ? product.image
+                  : `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${product.image}`
+              }
               alt={product.name}
               style={{
                 maxWidth: "90%",

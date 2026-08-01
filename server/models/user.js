@@ -27,12 +27,15 @@ const userSchema = new mongoose.Schema(
       enum: ["admin", "user"],
       default: "user",
     },
-
     profileImage: {
       type: String,
       default: "",
     },
 
+    profileImagePublicId: {
+      type: String,
+      default: "",
+    },
     resetPasswordToken: {
       type: String,
     },

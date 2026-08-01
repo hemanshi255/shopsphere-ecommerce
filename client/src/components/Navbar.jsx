@@ -205,7 +205,9 @@ function Navbar() {
                     <img
                       src={
                         user?.profileImage
-                          ? `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${user.profileImage}`
+                          ? user.profileImage.startsWith("http")
+                            ? user.profileImage
+                            : `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${user.profileImage}`
                           : defaultProfile
                       }
                       alt="Profile"
