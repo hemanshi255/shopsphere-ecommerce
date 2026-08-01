@@ -105,12 +105,17 @@ function Profile() {
                       <div className="profile-image-wrapper">
                         <img
                           src={
-                            user.profileImage
+                            user?.profileImage
                               ? `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${user.profileImage}`
                               : defaultProfile
                           }
                           alt="Profile"
-                          className="profile-image"
+                          className="rounded-circle me-2"
+                          width="40"
+                          height="40"
+                          onError={(e) => {
+                            e.target.src = defaultProfile;
+                          }}
                         />
 
                         <label

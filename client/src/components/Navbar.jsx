@@ -212,6 +212,9 @@ function Navbar() {
                       width="40"
                       height="40"
                       className="rounded-circle me-2"
+                      onError={(e) => {
+                        e.target.src = defaultProfile;
+                      }}
                     />
 
                     <span className="text-white">{user?.name}</span>

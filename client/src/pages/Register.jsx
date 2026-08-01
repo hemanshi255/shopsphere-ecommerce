@@ -27,7 +27,15 @@ function Register() {
     try {
       setLoading(true);
 
-      await api.post("/auth/register", formData);
+      // await api.post("/auth/register", formData);
+
+      // toast.success("Registration Successful");
+
+      // navigate("/login");
+      
+      const response = await api.post("/auth/register", formData);
+
+      console.log(response);
 
       toast.success("Registration Successful");
 
