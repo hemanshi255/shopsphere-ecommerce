@@ -116,58 +116,62 @@ function Categories() {
         </div>
 
         <div className="card p-3">
-          <table className="table table-hover align-middle">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {categories.length === 0 ? (
+          <div className="table-responsive">
+            <table className="table table-hover align-middle">
+              <thead>
                 <tr>
-                  <td colSpan="5" className="text-center">
-                    No Categories Found
-                  </td>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Status</th>
+                  <th>Actions</th>
                 </tr>
-              ) : (
-                categories.map((category, index) => (
-                  <tr key={category._id}>
-                    <td>{index + 1}</td>
+              </thead>
 
-                    <td>{category.name}</td>
-
-                    <td>{category.description}</td>
-
-                    <td>{category.status}</td>
-
-                    <td>
-                      <button
-                        className="btn btn-sm btn-warning me-2"
-                        onClick={() => {
-                          setSelectedCategory(category);
-                          setShowModal(true);
-                        }}
-                      >
-                        Edit
-                      </button>
-
-                      <button
-                        className="btn btn-sm btn-danger"
-                        onClick={() => handleDeleteCategory(category._id)}
-                      >
-                        Delete
-                      </button>
+              <tbody>
+                {categories.length === 0 ? (
+                  <tr>
+                    <td colSpan="5" className="text-center">
+                      No Categories Found
                     </td>
                   </tr>
-                ))
-              )}
-            </tbody>
-          </table>
+                ) : (
+                  categories.map((category, index) => (
+                    <tr key={category._id}>
+                      <td>{index + 1}</td>
+
+                      <td>{category.name}</td>
+
+                      <td>{category.description}</td>
+
+                      <td>{category.status}</td>
+
+                      <td>
+                         <div className="d-flex flex-column flex-md-row gap-2">
+                        <button
+                          className="btn btn-sm btn-warning me-2"
+                          onClick={() => {
+                            setSelectedCategory(category);
+                            setShowModal(true);
+                          }}
+                        >
+                          Edit
+                        </button>
+
+                        <button
+                          className="btn btn-sm btn-danger"
+                          onClick={() => handleDeleteCategory(category._id)}
+                        >
+                          Delete
+                        </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <CategoryModal
