@@ -175,7 +175,11 @@ function OrderDetails() {
                 <div className="row align-items-center">
                   <div className="col-12 col-md-3 text-center mb-3 mb-md-0">
                     <img
-                      src={`https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${item.product.image}`}
+                      src={
+                        product.image?.startsWith("http")
+                          ? product.image
+                          : `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${product.image}`
+                      }
                       alt={item.product.name}
                       className="img-fluid rounded"
                       style={{
