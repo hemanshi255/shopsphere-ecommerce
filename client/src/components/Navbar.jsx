@@ -4,8 +4,8 @@ import api from "../api/axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import "../css/navbar.css"
-
+import "../css/navbar.css";
+import defaultProfile from "../assets/img/defaultProfile.webp";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -100,14 +100,20 @@ function Navbar() {
                 </li>
 
                 <li className="nav-item">
-                  <Link className="nav-link text-center text-white" to="/profile">
+                  <Link
+                    className="nav-link text-center text-white"
+                    to="/profile"
+                  >
                     My Profile
                   </Link>
                 </li>
 
                 {isUser && (
                   <li className="nav-item">
-                    <Link className="nav-link text-center text-white" to="/my-orders">
+                    <Link
+                      className="nav-link text-center text-white"
+                      to="/my-orders"
+                    >
                       My Orders
                     </Link>
                   </li>
@@ -185,7 +191,10 @@ function Navbar() {
 
                 {isAdmin && (
                   <li className="nav-item">
-                    <Link className="nav-link text-center text-white" to="/add-product">
+                    <Link
+                      className="nav-link text-center text-white"
+                      to="/add-product"
+                    >
                       Add Product
                     </Link>
                   </li>
@@ -197,7 +206,7 @@ function Navbar() {
                       src={
                         user?.profileImage
                           ? `https://shopsphere-ecommerce-backend-i2tb.onrender.com/uploads/${user.profileImage}`
-                          : "/default-profile.png"
+                          : defaultProfile
                       }
                       alt="Profile"
                       width="40"
