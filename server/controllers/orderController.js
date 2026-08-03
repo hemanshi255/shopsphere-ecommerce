@@ -178,22 +178,29 @@ const placeOrder = async (req, res) => {
 
     const user = await User.findById(req.user.id);
 
-    await createNotification(
-      "New Order Received",
-      `A new order has been placed by ${user.name}.`,
-      "order",
-      "/admin/orders",
-    );
-
-    if (user && order.paymentMethod === "COD") {
-      await sendOrderConfirmationEmail(user.email, user.name, order);
-    }
-
+    // Send response immediately
     res.status(201).json({
       success: true,
       message: "Order placed successfully",
       order,
     });
+
+    // Create notification in background
+    if (user) {
+      createNotification(
+        "New Order Received",
+        `A new order has been placed by ${user.name}.`,
+        "order",
+        "/admin/orders",
+      ).catch((err) => console.error("Notification Error:", err));
+    }
+
+    // Send email in background
+    if (user && order.paymentMethod === "COD") {
+      sendOrderConfirmationEmail(user.email, user.name, order).catch((err) =>
+        console.error("Order confirmation email error:", err),
+      );
+    }
   } catch (error) {
     console.log(error);
 
