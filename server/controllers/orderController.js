@@ -172,20 +172,18 @@ const placeOrder = async (req, res) => {
       ],
     });
 
-
-
     cart.products = [];
 
     await cart.save();
 
     const user = await User.findById(req.user.id);
 
-      await createNotification(
-  "New Order Received",
-  `A new order has been placed by ${user.name}.`,
-  "order",
-  "/admin/orders"
-);
+    await createNotification(
+      "New Order Received",
+      `A new order has been placed by ${user.name}.`,
+      "order",
+      "/admin/orders",
+    );
 
     if (user && order.paymentMethod === "COD") {
       await sendOrderConfirmationEmail(user.email, user.name, order);
@@ -282,15 +280,21 @@ const updateOrderStatus = async (req, res) => {
 
     await order.save();
 
-    if (order.user) {
-      await sendOrderStatusEmail(order.user.email, order.user.name, order);
-    }
-
+    // Send response immediately
     res.status(200).json({
       success: true,
       message: "Order status updated",
       order,
     });
+
+    // Send email in background
+    if (order.user) {
+      sendOrderStatusEmail(order.user.email, order.user.name, order).catch(
+        (err) => {
+          console.error("Order status email error:", err);
+        },
+      );
+    }
   } catch (error) {
     console.log(error);
 
@@ -386,15 +390,18 @@ const cancelOrder = async (req, res) => {
 
     const user = await User.findById(req.user.id);
 
-    if (user) {
-      await sendOrderStatusEmail(user.email, user.name, order);
-    }
-
     res.status(200).json({
       success: true,
       message: "Order cancelled successfully",
       order,
     });
+
+    // Send email in background
+    if (user) {
+      sendOrderStatusEmail(user.email, user.name, order).catch((err) => {
+        console.error("Order cancellation email error:", err);
+      });
+    }
   } catch (error) {
     console.log(error);
 
